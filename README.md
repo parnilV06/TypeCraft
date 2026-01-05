@@ -1,7 +1,7 @@
 # ⌨️ TypeCraft
 
 <p align="center">
-  <img src="/logo-svg.svg" alt="TypeCraft Logo" width="120" />
+  <img src="/TypeCraft-SourcCode/public/logo-svg.svg" alt="TypeCraft Logo" width="120" />
 </p>
 
 <p align="center">
@@ -138,10 +138,11 @@ If you have thoughts on improving TypeCraft, feel free to open an issue or reach
 
 <p align="center">
   📬 <strong>Contact me:</strong><br/>
-  Email: <a href="mailto:06v.parnil@gmail.com">YOUR_EMAIL_HERE</a> • 
+  Email: <a href="mailto:06v.parnil@gmail.com"> 06v.parnil@gmail.com</a> • 
   LinkedIn: <a href="https://www.linkedin.com/in/parnil-vyawahare-70a1b0287/" target="_blank">Parnil Vyawahare</a> • 
   Portfolio: <a href="https://portfolio-parnil-vyawahare.netlify.app/" target="_blank">Website</a>
 </p>
+
 ---
 
 <p align="center">
