@@ -1,0 +1,25 @@
+import '../App.css'
+
+export default function StatusBar(){
+    return(
+        <>
+        <div className="status-bar">
+            <div className="status-title">
+                Typing Speed Test :
+            </div>
+            <div className="status-item">
+                <span>Difficulty:</span>
+                <span id="difficulty">Medium</span>
+            </div>
+            <span className="seperator"></span>
+            <div className="status-item">
+                <span>Time:</span>
+                <span className="active-time active">
+
+                </span>
+                <span id="time">60s</span>
+            </div>
+        </div>
+        </>
+    )
+}
