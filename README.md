@@ -1,7 +1,7 @@
 # ⌨️ TypeCraft
 
 <p align="center">
-  <img src="/TypeCraft-SourcCode/public/logo-svg.svg" alt="TypeCraft Logo" width="120" />
+  <img src="/public/logo-svg.svg" alt="TypeCraft Logo" width="120" />
 </p>
 
 <p align="center">
