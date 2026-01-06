@@ -235,6 +235,10 @@ body{
   padding: auto 25px;
 }
 
+.time-remaining{
+  color: var(--accent-primary);
+}
+
 /* Results */
 
 .results{
@@ -380,3 +384,4 @@ letter-spacing: 3.6px;
   height: 500px;
   margin-top: 25px;
 }
+
