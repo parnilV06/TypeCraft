@@ -26,7 +26,7 @@ export default function StatusBar({ timer_value, diff , onEnd }){
             </div>
             <div className="status-item">
                 <span>Difficulty:</span>
-                <span id="difficulty">{diff}</span>
+                <span id="difficulty"> {diff}</span>
             </div>
             <span className="seperator"></span>
             <div className="status-item">
