@@ -1,12 +1,12 @@
 import '../App.css'
 
-export default function Results(){
+export default function Results({results}){
     return(
         <>
         <div className="results">
             <div className="wpm main-res">
                 <span className="wpm-value">
-                    45
+                {results.grossWPM}
                 </span>
                 <span className="wpm-text">
                     Words Per Minute
@@ -17,7 +17,7 @@ export default function Results(){
                     Accuracy
                 </p>
                 <div className="accuracy-value">
-                    90%
+                    {results.accuracy} %
                 </div>
                 <span className="accuracy-text">
                     Accuracy
@@ -28,7 +28,7 @@ export default function Results(){
                     Raw WPM
                 </p>
                 <div className="raw-wpm-value">
-                    50
+                    {results.rawWPM}
                 </div>
                 <span className="raw-wpm-text">
                     Words per Min
@@ -40,19 +40,19 @@ export default function Results(){
                 </p>
                 <div className="char-value">
                     <span id='correct'>
-                        200
+                        {results.correctChars}
                     </span>
                     |
                     <span id='incorrect'>
-                        20
+                        {results.incorrectChars}
                     </span>
                     |
                     <span id='missed'>
-                        5
+                        {results.missedChars}
                     </span>
                     |
                     <span id='extra'>
-                        2
+                        {results.extraChars}
                     </span>
                 </div>
                 <span className="char-text">
