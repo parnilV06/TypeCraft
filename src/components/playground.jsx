@@ -6,7 +6,7 @@ import Banner from './banner.jsx'
 import Canvas from './canvas.jsx'
 import Results from './results.jsx'
 import React from 'react'
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect , useCallback } from 'react';
 import { easyWords, mediumWords, hardWords } from '../data/wordList.js'
 // import typing engine core functions
 import { classifyChar } from '../functions/typingEngine.js'
@@ -39,6 +39,11 @@ export default function Playground() {
   const [currentInput, setCurrentInput] = useState("");
 
   const [results, setResults] = useState(null);
+
+  // State and Ref varaible for timer 
+  const [timeRemaining, setTimeRemaining] = useState(timeLimit);
+  const startTimeRef = useRef(null);
+
 
 
   // funnction to find word count based on time limit and difficulty
@@ -159,6 +164,7 @@ export default function Playground() {
     setTestStarted(true);
     setTestEnded(false);
     setWords(generateWordsList(difficulty));
+
     setCurrentWordIndex(0);
     setCurrentCharIndex(0);
     setCurrentInput("");
@@ -171,6 +177,9 @@ export default function Playground() {
     setWordsCompleted(0);
     setTypedHistory({});
     setResults(null);
+
+    startTimeRef.current = Date.now();
+    setTimeRemaining(timeLimit);
 
   }
 
@@ -194,22 +203,35 @@ export default function Playground() {
     // code to reset timer and other data and states
   }
 
-  function endTest() {
-    setTestEnded(true);
-    setTestStarted(false);
+  const endTest = useCallback(() => {
+  setTestEnded(true);
+  setTestStarted(false);
 
-    // calculating results on Test end 
-    const timeInMinutes = timeLimit / 60;
+  const timeInMinutes = timeLimit / 60;
 
-    const grossWPM = Math.round((totalTypedChars / 5) / timeInMinutes);
+  const grossWPM = Math.round(
+    (totalTypedChars / 5) / timeInMinutes
+  );
 
-    const accuracy = totalTypedChars === 0 ? 0 : Math.round((correctChars / totalTypedChars) * 100);
+  const accuracy =
+    totalTypedChars === 0
+      ? 0
+      : Math.round((correctChars / totalTypedChars) * 100);
 
-    const rawWPM = totalTypedChars===0 ? 0 : grossWPM - (incorrectChars + extraChars + missedChars) / (timeInMinutes);
+  const rawWPM = totalTypedChars === 0 ? 0 : grossWPM - (incorrectChars + extraChars + missedChars) / (timeInMinutes);
 
-    setResults({ grossWPM, accuracy, rawWPM , totalTypedChars, correctChars, incorrectChars, extraChars, missedChars, wordsCompleted });
+  setResults({ grossWPM, accuracy, rawWPM, totalTypedChars, correctChars, incorrectChars, extraChars, missedChars, wordsCompleted });
+}, [
+  timeLimit,
+  totalTypedChars,
+  correctChars,
+  incorrectChars,
+  extraChars,
+  missedChars,
+  wordsCompleted,
+]);
 
-  }
+
 
   // logging states and calculated values for char for testing purposes here using useEffect |
 
@@ -238,6 +260,27 @@ export default function Playground() {
     }
   }, [testStarted, testEnded]);
 
+//  useEffect to update and derive time using setInterval
+useEffect(() => {
+  if (!testStarted || testEnded) return;
+
+  const interval = setInterval(() => {
+    const elapsed = Math.floor(
+      (Date.now() - startTimeRef.current) / 1000
+    );
+
+    const remaining = timeLimit - elapsed;
+
+    if (remaining <= 0) {
+      setTimeRemaining(0);
+      endTest();
+    } else {
+      setTimeRemaining(remaining);
+    }
+  }, 250); // check 4× per second
+
+  return () => clearInterval(interval);
+}, [testStarted, testEnded, timeLimit , endTest]);
 
 
 
@@ -250,7 +293,7 @@ export default function Playground() {
           onDifficultyChange={handleDifficultyChange}
           onTimeChange={handleTimeChange}
           disabled={testStarted} />}
-        {(testStarted && <StatusBar timer_value={timeLimit} diff={difficulty} onEnd={endTest} />)}
+        {(testStarted && <StatusBar timer_value={timeLimit} diff={difficulty} timeRemaining={timeRemaining} />)}
 
         {/* Render Banner if test not started */}
         {(!testStarted && !testEnded) && <Banner onStart={startTest} />}

@@ -1,22 +1,8 @@
 import '../App.css'
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect , useRef} from 'react';
 
-export default function StatusBar({ timer_value, diff , onEnd }){
-    const [timeremaining, setTimeRemaining] = useState(timer_value);
-
-    useEffect(() => {
-        setTimeRemaining(timer_value);
-    }, [timer_value]);
-
-    useEffect(() => {
-        if (timeremaining <= 0) {
-            onEnd();
-            return;
-        }
-        const timer = setTimeout(() => setTimeRemaining(timeremaining - 1), 1000);
-        return () => clearTimeout(timer);
-    }, [timeremaining, onEnd]);
+export default function StatusBar({ timer_value, diff , timeRemaining }){
 
     return(
         <>
@@ -32,7 +18,7 @@ export default function StatusBar({ timer_value, diff , onEnd }){
             <div className="status-item">
                 <span>Time:</span>
                 <span className="active-time active">
-                    <span id="time-remaining">  {timeremaining}   </span>
+                    <span id="time-remaining">  {timeRemaining}   </span>
                 </span>
                 <span id="time"> / {timer_value}s</span>
             </div>
