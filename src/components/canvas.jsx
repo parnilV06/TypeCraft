@@ -1,6 +1,6 @@
 import '../App.css'
 
-export default function Canvas({ testWords, viewportStart, currentWordIndex }){
+export default function Canvas({ testWords, viewportStart, currentWordIndex ,currentCharIndex , typedHistory }){
     return(
         <>
             <div className="canvas">

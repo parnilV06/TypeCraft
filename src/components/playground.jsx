@@ -300,7 +300,8 @@ useEffect(() => {
 
         {/* Render Canvas if test started and not ended */}
         {(testStarted && !testEnded) && <>
-          <Canvas testWords={visibleWords} viewportStart={viewportStart} currentWordIndex={currentWordIndex} /> <input
+          <Canvas testWords={visibleWords} viewportStart={viewportStart} currentWordIndex={currentWordIndex} currentCharIndex={currentCharIndex} typedHistory={typedHistory} /> 
+          <input
             ref={inputRef}
             type="text"
             className="hidden-input"
