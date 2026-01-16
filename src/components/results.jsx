@@ -1,6 +1,6 @@
 import '../App.css'
 
-export default function Results({results}){
+export default function Results({results , onBack}){
     return(
         <>
         <div className="results">
@@ -42,15 +42,15 @@ export default function Results({results}){
                     <span id='correct'>
                         {results.correctChars}
                     </span>
-                    |
+                    &nbsp;| &nbsp;
                     <span id='incorrect'>
                         {results.incorrectChars}
                     </span>
-                    |
+                    &nbsp;|&nbsp;
                     <span id='missed'>
                         {results.missedChars}
                     </span>
-                    |
+                     &nbsp;|&nbsp;
                     <span id='extra'>
                         {results.extraChars}
                     </span>
@@ -59,6 +59,13 @@ export default function Results({results}){
                     correct | incorrect | missed | extra characters
                 </span>
             </div>
+        </div>
+
+        <div className="back_btn">
+            <button onClick={onBack}>
+                <img src="/back.svg" className='back-img' alt="back-arrow" />
+                <span>Back to Home</span>
+            </button>
         </div>
         </>
     )

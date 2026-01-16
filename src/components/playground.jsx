@@ -91,6 +91,13 @@ export default function Playground() {
   // function to handel keydown event
 
   function handleKeyDown(e) {
+
+    // check is the key pressed is backspace and trigger func accordingly
+    if(e.key ==="Backspace"){
+      e.preventDefault();
+      handelBackspace();
+      return;
+    }
     const typedChar = e.key;
 
     // guard clauses
@@ -159,6 +166,43 @@ export default function Playground() {
     setCurrentInput("");
   }
 
+  function handelBackspace(){
+    if(currentInput.length===0) return;
+
+    const lastCharIndex = currentInput.length-1;
+    const charKey = `${currentWordIndex}-${lastCharIndex}`;
+    const lastEntry = typedHistory[charKey]
+
+    if(!lastEntry)return;
+
+    setTotalTypedChars(c => Math.max(0,c-1));
+
+    if(lastEntry.result ==="correct"){
+      setCorrectChars(c => Math.max(0,c-1));
+      setCurrentCharIndex(i => Math.max(0,i-1));
+    }
+
+  else if (lastEntry.result === "incorrect") {
+    setIncorrectChars(c => Math.max(0, c - 1));
+    setCurrentCharIndex(i => Math.max(0, i - 1));
+  }
+
+  else if (lastEntry.result === "extra") {
+    setExtraChars(c => Math.max(0, c - 1));
+    // char index does NOT move
+  }
+
+  // Remove from input buffer
+  setCurrentInput(input => input.slice(0, -1));
+
+  // Remove from history
+  setTypedHistory(prev => {
+    const copy = { ...prev };
+    delete copy[charKey];
+    return copy;
+  });
+}
+
   // Event Handlers 
   function startTest() {
     setTestStarted(true);
@@ -201,6 +245,12 @@ export default function Playground() {
   function resetTest() {
     setTestStarted(false);
     // code to reset timer and other data and states
+  }
+
+  function backHome(){
+    setTestStarted(false);
+    setTestEnded(false);
+    resetTest();
   }
 
   const endTest = useCallback(() => {
@@ -314,7 +364,7 @@ useEffect(() => {
 
 
         {/* Render Results if test ended */}
-        {testEnded && results && <Results results={results} />}
+        {testEnded && results && <Results results={results} onBack={backHome} />}
 
 
         {/* Render Secondary Controls if test started and not ended */}
