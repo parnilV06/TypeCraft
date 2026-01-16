@@ -6,7 +6,7 @@ export default function Results({results , onBack}){
         <div className="results">
             <div className="wpm main-res">
                 <span className="wpm-value">
-                {results.grossWPM}
+                {results.netWPM}
                 </span>
                 <span className="wpm-text">
                     Words Per Minute

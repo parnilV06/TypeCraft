@@ -12,6 +12,20 @@ export default function Canvas({ testWords, viewportStart, currentWordIndex, cur
             const isCurrent = globalWordIndex === currentWordIndex;
             const isFuture = globalWordIndex > currentWordIndex;
 
+            // logic implementation for rendering extra charecters typed for the current word 
+            const extraChars =[];
+
+            if(isCurrent){
+              Object.keys(typedHistory).forEach(key => {
+                const [wordIndex , charIndex] = key.split("-").map(Number);
+
+                if(wordIndex === globalWordIndex && charIndex >= word.length){
+                  extraChars.push({charIndex,char:typedHistory[key].char});
+                }
+              });
+
+              extraChars.sort((a,b) => a.charIndex - b.charIndex);
+            }
             return (
               <span
                 key={globalWordIndex}
@@ -44,6 +58,16 @@ export default function Canvas({ testWords, viewportStart, currentWordIndex, cur
                   );
                 })}
 
+                {/* render extra char */}
+                {isCurrent &&
+                extraChars.map(({ char, charIndex }) => (
+                  <span
+                    key={`extra-${charIndex}`}
+                    className="char extra"
+                  >
+                    {char}
+                  </span>
+                ))}
               </span>
             );
           })}

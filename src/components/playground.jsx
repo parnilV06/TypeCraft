@@ -144,13 +144,28 @@ export default function Playground() {
     }
 
     // store history for rendering
-    setTypedHistory(prev => ({
-      ...prev,
-      [`${currentWordIndex}-${currentCharIndex}`]: {
-        char: typedChar,
-        result
-      }
-    }));
+    // setTypedHistory(prev => ({
+    //   ...prev,
+    //   [`${currentWordIndex}-${currentCharIndex}`]: {
+    //     char: typedChar,
+    //     result
+    //   }
+    // }));
+    setTypedHistory(prev => {
+  const charIndex =
+    result === "extra"
+      ? currentInput.length
+      : currentCharIndex;
+
+  return {
+    ...prev,
+    [`${currentWordIndex}-${charIndex}`]: {
+      char: typedChar,
+      result
+    }
+  };
+});
+
   }
 
   function handleWordSubmit() {
@@ -259,7 +274,7 @@ export default function Playground() {
 
   const timeInMinutes = timeLimit / 60;
 
-  const grossWPM = Math.round(
+  const rawWPM = Math.round(
     (totalTypedChars / 5) / timeInMinutes
   );
 
@@ -268,9 +283,10 @@ export default function Playground() {
       ? 0
       : Math.round((correctChars / totalTypedChars) * 100);
 
-  const rawWPM = totalTypedChars === 0 ? 0 : grossWPM - (incorrectChars + extraChars + missedChars) / (timeInMinutes);
+const netWPM = Math.max(0, Math.round(rawWPM * accuracy / 100));
 
-  setResults({ grossWPM, accuracy, rawWPM, totalTypedChars, correctChars, incorrectChars, extraChars, missedChars, wordsCompleted });
+
+  setResults({ netWPM, accuracy, rawWPM, totalTypedChars, correctChars, incorrectChars, extraChars, missedChars, wordsCompleted });
 }, [
   timeLimit,
   totalTypedChars,

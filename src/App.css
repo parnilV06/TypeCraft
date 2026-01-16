@@ -444,6 +444,11 @@ letter-spacing: 3.6px;
   opacity: 0.5;
 }
 
+.char.extra {
+  color: var(--text-muted);
+  opacity: 0.6;
+}
+
 .char.active {
   position: relative;
 }
