@@ -400,3 +400,42 @@ letter-spacing: 3.6px;
   pointer-events: none;
 }
 
+
+/* Styling for different char status during test run */
+
+.char {
+  color: var(--text-default);
+}
+
+.char.correct {
+  color: var(--accent-primary);
+}
+
+.char.incorrect {
+  color: var(--accent-secondary);
+}
+
+.char.missed {
+  color: var(--text-muted);
+  opacity: 0.5;
+}
+
+.char.active {
+  position: relative;
+}
+
+.char.active::after {
+  content: "";
+  position: absolute;
+  right: -2px;
+  bottom: 0;
+  width: 2px;
+  height: 1.2em;
+  background: var(--accent-primary);
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
