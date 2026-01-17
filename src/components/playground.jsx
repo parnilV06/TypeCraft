@@ -19,8 +19,9 @@ export default function Playground() {
   const [testEnded, setTestEnded] = useState(false);
   const [difficulty, setDifficulty] = useState("easy");
   const [timeLimit, setTimeLimit] = useState(60);
-  const max_word = 30;
-  const wordsPerView = 20;
+
+  const [wordsPerView, setWordsPerView] = useState(20);
+
 
   const [words, setWords] = useState([]);
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
@@ -74,7 +75,7 @@ export default function Playground() {
   // function to get random words from source list
   function generateWordsList(diff) {
     let sourceList = setSource(diff);
-    let Totalcount = findWordCount(timeLimit, difficulty);
+let Totalcount = findWordCount(timeLimit, difficulty) + wordsPerView;
     let generatedWords = [];
     for (let i = 0; i < Totalcount; i++) {
       let randomIndex = Math.floor(Math.random() * sourceList.length);
@@ -141,14 +142,6 @@ export default function Playground() {
       // DO NOT move currentCharIndex
     }
 
-    // store history for rendering
-    // setTypedHistory(prev => ({
-    //   ...prev,
-    //   [`${currentWordIndex}-${currentCharIndex}`]: {
-    //     char: typedChar,
-    //     result
-    //   }
-    // }));
     setTypedHistory(prev => {
   const charIndex =
     result === "extra"
@@ -240,12 +233,7 @@ export default function Playground() {
 
   }
 
-  function calculateViewport() {
-    const start = Math.floor(currentWordIndex / wordsPerView) * wordsPerView;
-    const visibleWords = words.slice(start, start + wordsPerView);
-    return { start, visibleWords };
-  }
-  const { start: viewportStart, visibleWords } = calculateViewport();
+
 
   function handleDifficultyChange(level) {
     setDifficulty(level);
@@ -294,6 +282,18 @@ const netWPM = Math.max(0, Math.round(rawWPM * accuracy / 100));
   missedChars,
   wordsCompleted,
 ]);
+
+function calculateViewport() {
+  const start =
+    Math.floor(currentWordIndex / wordsPerView) * wordsPerView;
+
+  const visibleWords =
+    words.slice(start, start + wordsPerView);
+
+  return { start, visibleWords };
+}
+
+const { start: viewportStart, visibleWords } = calculateViewport();
 
 
 
@@ -345,6 +345,16 @@ useEffect(() => {
 
   return () => clearInterval(interval);
 }, [testStarted, testEnded, timeLimit , endTest]);
+
+useEffect(() => {
+  if (difficulty === "easy") {
+    setWordsPerView(20);
+  } else if (difficulty === "medium") {
+    setWordsPerView(12);
+  } else if (difficulty === "hard") {
+    setWordsPerView(8);
+  }
+}, [difficulty]);
 
 
 
