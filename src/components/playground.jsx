@@ -5,7 +5,6 @@ import Sec_controls from './sec-controls.jsx'
 import Banner from './banner.jsx'
 import Canvas from './canvas.jsx'
 import Results from './results.jsx'
-import React from 'react'
 import { useState, useRef, useEffect , useCallback } from 'react';
 import { easyWords, mediumWords, hardWords } from '../data/wordList.js'
 // import typing engine core functions
@@ -20,7 +19,6 @@ export default function Playground() {
   const [testEnded, setTestEnded] = useState(false);
   const [difficulty, setDifficulty] = useState("easy");
   const [timeLimit, setTimeLimit] = useState(60);
-  const [charStatus, setCharStatus] = useState(null); // correct / incorrect / extra / missed - characters
   const max_word = 30;
   const wordsPerView = 20;
 

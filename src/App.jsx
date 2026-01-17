@@ -12,40 +12,30 @@ import Results from './components/results.jsx'
 import StatusBar from './components/statusbar.jsx'
 
 function App() {
-  
+
 
   return (
-    
+
     <>
-    {/* Nav /  header bar  */}
-     <Nav />
+      <div className="app">
 
-    {/* Controls */}
-    {/* <Controls /> */}
+        {/* Nav /  header bar  */}
+        <Nav />
 
-    {/* Status Bar */}
-    {/* <StatusBar /> */}
+        <main className="content">
 
-    {/* start-banner */}
-    {/* <Banner />   */}
+          {/* Playground / Main area */}
+          <Playground />
 
-    {/* Result */}
-    {/* <Results /> */}
+        </main>
 
-    {/* Canvas */}
-    {/* <Canvas /> */}
+        {/* Footer bar */}
+        <Footer />
 
-    {/* Secondary controls / reset test */}
-    {/* <Sec_controls /> */}
-
-    {/* Playground / Main area */}
-    <Playground />
-
-     {/* Footer bar */}
-     <Footer />
+      </div>
     </>
 
-    
+
   )
 }
 
