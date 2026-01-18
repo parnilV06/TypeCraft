@@ -11,9 +11,10 @@ import { easyWords, mediumWords, hardWords } from '../data/wordList.js'
 import { classifyChar } from '../functions/typingEngine.js'
 import { finalizeWord } from '../functions/typingEngine.js'
 
-
+// Master Component
 
 export default function Playground() {
+  
   // State variables
   const [testStarted, setTestStarted] = useState(false);
   const [testEnded, setTestEnded] = useState(false);
@@ -22,12 +23,11 @@ export default function Playground() {
 
   const [wordsPerView, setWordsPerView] = useState(20);
 
-
   const [words, setWords] = useState([]);
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [currentCharIndex, setCurrentCharIndex] = useState(0);
 
-  //variables and coynters for stats
+  //variables and counters for stats
   const [totalTypedChars, setTotalTypedChars] = useState(0);
   const [correctChars, setCorrectChars] = useState(0);
   const [incorrectChars, setIncorrectChars] = useState(0);
@@ -121,6 +121,7 @@ let Totalcount = findWordCount(timeLimit, difficulty) + wordsPerView;
     processCharResult(charResult, typedChar);
   }
 
+  // function to process character level results and update corresponding state varaibles
   function processCharResult(result, typedChar) {
     setTotalTypedChars(c => c + 1);
 
@@ -159,6 +160,7 @@ let Totalcount = findWordCount(timeLimit, difficulty) + wordsPerView;
 
   }
 
+  // function to finalize a word on spacebar press and deal with missed char calculation
   function handleWordSubmit() {
     const expectedWord = words[currentWordIndex];
 
@@ -172,6 +174,7 @@ let Totalcount = findWordCount(timeLimit, difficulty) + wordsPerView;
     setCurrentInput("");
   }
 
+  // function to handel backspace logic
   function handelBackspace(){
     if(currentInput.length===0) return;
 
@@ -210,6 +213,8 @@ let Totalcount = findWordCount(timeLimit, difficulty) + wordsPerView;
 }
 
   // Event Handlers 
+
+  // Start test event handler and set states
   function startTest() {
     setTestStarted(true);
     setTestEnded(false);
@@ -234,11 +239,12 @@ let Totalcount = findWordCount(timeLimit, difficulty) + wordsPerView;
   }
 
 
-
+//  helper function to set difficulty level
   function handleDifficultyChange(level) {
     setDifficulty(level);
   }
 
+// helper function to handel time change
   function handleTimeChange(time) {
     setTimeLimit(time);
   }
@@ -248,12 +254,14 @@ let Totalcount = findWordCount(timeLimit, difficulty) + wordsPerView;
     // code to reset timer and other data and states
   }
 
+  // helper function to reset states to default values when back to home button pressed
   function backHome(){
     setTestStarted(false);
     setTestEnded(false);
     resetTest();
   }
 
+  // function to end test and calculate final results and stats
   const endTest = useCallback(() => {
   setTestEnded(true);
   setTestStarted(false);
@@ -283,6 +291,7 @@ const netWPM = Math.max(0, Math.round(rawWPM * accuracy / 100));
   wordsCompleted,
 ]);
 
+// function to calcullate and manage viewport and words rendering
 function calculateViewport() {
   const start =
     Math.floor(currentWordIndex / wordsPerView) * wordsPerView;
@@ -385,7 +394,6 @@ useEffect(() => {
           />
         </>
         }
-
 
         {/* Render Results if test ended */}
         {testEnded && results && <Results results={results} onBack={backHome} />}

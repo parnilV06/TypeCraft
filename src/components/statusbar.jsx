@@ -1,6 +1,6 @@
 import '../App.css'
-import React from 'react';
-import { useState, useEffect , useRef} from 'react';
+
+// Typing test status bar component
 
 export default function StatusBar({ timer_value, diff , timeRemaining }){
 

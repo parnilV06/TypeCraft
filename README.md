@@ -5,11 +5,14 @@
 </p>
 
 <p align="center">
-  <strong>A minimal, distraction-free typing speed test  tool built for focus and practice.</strong>
+  <strong>A minimal, distraction-free typing speed test tool built for focus and practice.</strong>
 </p>
 
 <p align="center">
-  🌐 Live Demo: <a href="https://typecraft-typing-speed-test.netlify.app/" target="_blank">TypeCraft</a>
+  🌐 Live Demo:
+  <a href="https://typecraft-typing-speed-test.netlify.app/" target="_blank">
+    TypeCraft
+  </a>
 </p>
 
 ---
@@ -19,11 +22,12 @@
 **TypeCraft** is a clean and focused typing speed test web application designed to help users measure and improve their typing skills without distractions.
 
 Inspired by modern developer tools and minimal UX principles, TypeCraft prioritizes:
+
 - clarity over clutter  
 - accuracy over gimmicks  
 - focus over features  
 
-This project is built as a **learning-first project**, focusing on solid frontend fundamentals, clean UI design, and correct typing-test logic.
+This project was built as a **learning-first project**, with strong emphasis on frontend fundamentals, correct typing-test logic, and clean UI architecture.
 
 ---
 
@@ -38,19 +42,20 @@ This project is built as a **learning-first project**, focusing on solid fronten
   - Hard  
 
 - ⌨️ **Real-time Typing Feedback**  
-  - Correct characters highlighted
-  - Incorrect characters clearly indicated
+  - Correct characters highlighted  
+  - Incorrect characters clearly indicated  
+  - Extra and missed characters handled accurately  
 
-- 📊 **Accurate Results**
-  - Words Per Minute (WPM)
-  - Accuracy
-  - Total characters typed
-  - Correct vs incorrect inputs
+- 📊 **Detailed Results**
+  - Net WPM (accuracy-adjusted speed)
+  - Raw WPM
+  - Accuracy percentage
+  - Character-level statistics
 
 - 🌙 **Minimal Dark UI**
-  - Eye-friendly
-  - Inspired by modern typing tools
-  - Designed for long practice sessions
+  - Eye-friendly color palette  
+  - Inspired by modern typing tools  
+  - Designed for long, focused practice sessions  
 
 ---
 
@@ -62,7 +67,33 @@ This project is built as a **learning-first project**, focusing on solid fronten
 4. Type the displayed words as accurately and quickly as possible
 5. View detailed results at the end of the test
 
-The test logic is based on **character-level comparison**, ensuring realistic and fair accuracy calculations.
+The typing engine uses **character-level comparison**, ensuring realistic accuracy and speed calculations instead of word-only validation.
+
+---
+
+## 📈 WPM & Accuracy Calculation
+
+- **Raw WPM**  
+  `(Total typed characters ÷ 5) ÷ time`
+
+- **Accuracy**  
+  `(Correct characters ÷ total typed characters) × 100`
+
+- **Net WPM**  
+  `Raw WPM adjusted using accuracy`
+
+This mirrors how real-world typing tests calculate speed and correctness.
+
+---
+
+## 🎯 Why TypeCraft?
+
+TypeCraft was built to deeply understand how real typing tests work —  
+from keyboard event handling to viewport-based word rendering —  
+without relying on external typing libraries.
+
+The goal was not just to build a typing test,  
+but to build it **correctly**, from first principles.
 
 ---
 
@@ -73,17 +104,18 @@ The test logic is based on **character-level comparison**, ensuring realistic an
 - No unnecessary animations or distractions
 - UI reacts to state — not manual DOM manipulation
 
-The goal is to make typing feel **natural, focused, and intentional**.
+Typing should feel **natural, focused, and intentional**.
 
 ---
 
 ## 🛠️ Tech Stack
 
 - **React** (Functional Components & Hooks)
+- **Vite**
 - **CSS** (Custom styling, no UI frameworks)
 - **JavaScript (ES6+)**
 
-No external typing libraries are used — all logic is implemented from scratch for learning purposes.
+All typing logic is implemented from scratch for learning and correctness.
 
 ---
 
@@ -99,16 +131,18 @@ src/
 
 ---
 
+---
+
 ## 🚧 Project Status
 
-🟡 **In active development**
+🟢 **Stable — v1.0.0**
 
-Planned improvements:
-- Better mobile responsiveness
+Planned future improvements (optional):
+- Enhanced mobile responsiveness
 - Optional punctuation & numbers mode
-- More customization options for the test
+- More test customization
 - Improved results visualization
-- Keyboard-only navigation enhancements
+- Accessibility improvements
 
 ---
 
@@ -117,7 +151,7 @@ Planned improvements:
 - Translating Figma designs into real CSS
 - Handling keyboard events correctly in React
 - Managing complex UI state cleanly
-- Designing logic-first before UI polish
+- Writing logic-first UI instead of DOM-driven code
 - Understanding why design ≠ implementation 1:1
 
 ---
@@ -125,23 +159,37 @@ Planned improvements:
 ## 🙌 Acknowledgements
 
 - UI/UX inspiration from modern typing tools
-- Fonts: Fira code (Display font for Tests )/ Fira sans (UI) / Tourney (Logo)
+- Fonts used:
+  - Fira Code (typing content)
+  - Fira Sans (UI)
+  - Tourney (logo)
 - Built with a strong focus on learning and craftsmanship
 
 ---
 
-## 📬 Feedback & Contributions
+## 📬 Feedback & Contact
 
-Feedback, suggestions, and ideas are always welcome.  
-If you have thoughts on improving TypeCraft, feel free to open an issue or reach out.
-
+Feedback, suggestions, and ideas are always welcome.
 
 <p align="center">
   📬 <strong>Contact me:</strong><br/>
-  Email: <a href="mailto:06v.parnil@gmail.com"> 06v.parnil@gmail.com</a> • 
-  LinkedIn: <a href="https://www.linkedin.com/in/parnil-vyawahare-70a1b0287/" target="_blank">Parnil Vyawahare</a> • 
-  Portfolio: <a href="https://portfolio-parnil-vyawahare.netlify.app/" target="_blank">Website</a>
+  Email:
+  <a href="mailto:06v.parnil@gmail.com">06v.parnil@gmail.com</a> •
+  LinkedIn:
+  <a href="https://www.linkedin.com/in/parnil-vyawahare-70a1b0287/" target="_blank">
+    Parnil Vyawahare
+  </a> •
+  Portfolio:
+  <a href="https://portfolio-parnil-vyawahare.netlify.app/" target="_blank">
+    Website
+  </a>
 </p>
+
+---
+
+## 📄 License
+
+This project is open-source and available under the **MIT License**.
 
 ---
 

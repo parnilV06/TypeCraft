@@ -1,5 +1,7 @@
 import '../App.css'
 
+// Difficulty and timer setting components 
+
 export default function Controls({
     difficulty,
     timeLimit,

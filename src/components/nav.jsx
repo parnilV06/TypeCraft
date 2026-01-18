@@ -1,6 +1,8 @@
 import '../App.css'
 import Logo from '/logo-svg.svg'
 
+// Header bar component 
+
 export default function Nav(){
   return (
     <>

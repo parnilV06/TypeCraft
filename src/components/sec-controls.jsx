@@ -1,5 +1,7 @@
 import '../App.css'
 
+// Reset button ( secondary control ) component
+
 export default function sec_controls({ onReset }){
     return(
         <>

@@ -1,5 +1,6 @@
 import '../App.css'
 
+// Start Banner Component 
 export default function Banner({ onStart }){
     return(
         <>

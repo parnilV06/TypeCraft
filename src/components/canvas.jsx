@@ -1,5 +1,7 @@
 import '../App.css'
 
+// Main typing test canvas component 
+
 export default function Canvas({ testWords, viewportStart, currentWordIndex, currentCharIndex, typedHistory }) {
   return (
     <>

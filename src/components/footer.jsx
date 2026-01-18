@@ -1,5 +1,7 @@
 import '../App.css'
 
+// Footer component
+
 export default function Footer(){
     return(
         <>  
